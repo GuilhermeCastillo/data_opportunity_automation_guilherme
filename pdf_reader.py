@@ -75,7 +75,7 @@ class PDF():
                                                     ])
 
         if index == 0:
-            df = df.drop([0, 1])
+            df = df.drop([0, 1, 2])
 
         if index != 0:
             df = pd.concat([df, df_header])

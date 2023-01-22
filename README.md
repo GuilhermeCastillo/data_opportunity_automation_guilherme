@@ -3,5 +3,7 @@
 
 **Running the application**
 
+- create virtualenv: virtualenv venv
+- activate venv: source venv/bin/activate ( linux ) 
 - Install dependencies: pip install -r requirements.txt
 - Run application: python3 automation.py

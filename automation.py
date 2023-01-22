@@ -37,8 +37,8 @@ def df_to_xlsx(df):
 
 
 base_url = "https://www.gob.mx/conadesuca/documentos/dieproc-reportes-de-avance-de-produccion-ciclo-azucarero-2020-2021?state=published"
-urls_pdf = get_pdf(base_url)
-write_file_local(urls_pdf[1:6])
+# urls_pdf = get_pdf(base_url)
+# write_file_local(urls_pdf[1:6])
 dir_pdfs = os.getcwd()+'/temp'
 list_pdfs = os.listdir(dir_pdfs)
 
@@ -55,6 +55,7 @@ for reporte in list_pdfs:
     list_df_final.append(df_final)
 
 df_final = pd.concat(list_df_final, ignore_index=True)
+df_final = df_final.drop(columns=["Unnamed: 0", "Unnamed: 1", "Unnamed: 2"])
 
 df_to_xlsx(df_final)
 

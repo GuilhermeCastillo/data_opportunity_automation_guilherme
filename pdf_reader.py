@@ -6,12 +6,12 @@ import re
 
 
 class PDF():
-    def __init__(self, file_name):
-        self.file_name = file_name
+    def __init__(self, path_file):
+        self.path_file = path_file
 
     # Encotra o indíce uma mágina através do título
     def search_index_table_by_title(self, title="Cuadro 7"):
-        read_pdf = PyPDF2.PdfFileReader(self.file_name)
+        read_pdf = PyPDF2.PdfFileReader(self.path_file)
         # pega o numero de páginas
         number_of_pages = read_pdf.getNumPages()
         count = 0
@@ -31,13 +31,16 @@ class PDF():
 
         return "index não encontrado"
 
-    def date_report(self):
-
-        return
-
     # ler as tabelas de uma página do pdf, transcrevendo as tabelas para um dataframe
     def create_table(self, index, page):
-        table_list = tabula.read_pdf(self.file_name, pages=page)
+        reader = PyPDF2.PdfFileReader(self.path_file)
+        page_table = reader.pages[int(page)-1]
+        text = page_table.extract_text()
+        li = list(text.split("\n"))
+        date_report = list(filter(lambda x: x.startswith("Comprende"), li))[
+            0].split("al")[1]
+
+        table_list = tabula.read_pdf(self.path_file, pages=page)
         df = table_list[index]
         header = list(df.columns)
         if index != 0:
@@ -56,6 +59,8 @@ class PDF():
             header[9]: 'Azúcar blanco especial',
             header[10]: 'Azúcar mascabado',
             header[11]: 'Azúcar con pol menor a 99.2'})
+
+        df['Address'] = date_report
 
         if index == 2:
             df = df.drop(columns=["Unnamed: 0", "Unnamed: 1"])
@@ -96,4 +101,4 @@ class PDF():
 
 if __name__ == '__main__':
     teste = PDF("Reporte_36.pdf")
-    print(teste.create_table(1, 6))
+    print(teste.date_report(6))

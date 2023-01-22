@@ -60,7 +60,7 @@ class PDF():
             header[10]: 'Azúcar mascabado',
             header[11]: 'Azúcar con pol menor a 99.2'})
 
-        df['Address'] = date_report
+        df['Data do Report'] = date_report
 
         if index == 2:
             df = df.drop(columns=["Unnamed: 0", "Unnamed: 1"])
@@ -100,5 +100,4 @@ class PDF():
 
 
 if __name__ == '__main__':
-    teste = PDF("Reporte_36.pdf")
-    print(teste.date_report(6))
+    ...

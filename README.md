@@ -1,7 +1,7 @@
 ## notes
   Esta é uma primeira versão, que eu considero não muito perfomática. Mas, não consegui pensar em um algoritmo mais otimizado.
   
-  A minha máquina é GNU-Linux e eu não consegui adptar em uma versão Windows pois, não tinha como eu realizar os teste mas, acredito que será necessário alterar apenas a barra (  / para  \ ).
+  A minha máquina é GNU-Linux e eu não consegui adptar em uma versão Windows pois, não tinha como eu realizar os testes mas, acredito que será necessário alterar apenas a barra (  / para  \ ).
 
 
 **Running the application**

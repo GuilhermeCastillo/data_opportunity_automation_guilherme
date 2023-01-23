@@ -12,7 +12,7 @@ def get_pdf(base_url):
 
     urls_pdf = []
 
-    # Percore por todas as tags de "links" e filtra todos os links que contém arquivos pdf
+    # Percorre por todas as tags de "links" e filtra todos os links que contém arquivos pdf
     for a in soup.find_all('a', href=True):
         if a['href'].startswith("https") and a['href'].endswith(".pdf"):
             urls_pdf.append(a['href'])
